@@ -141,6 +141,7 @@ class MyForm(QtWidgets.QMainWindow):
             #Net Profit
             self.ui.label_net_amount.setText(str(totalGross-totalCost))
 
+            #Returning to table MDI Area
             self.toTable()
         else:
             dialog = MyDialog()
