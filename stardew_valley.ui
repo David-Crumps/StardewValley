@@ -340,7 +340,13 @@ border-image: transparent</string>
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="combo_farming_level"/>
+             <widget class="QSpinBox" name="spinner_farming_level">
+              <property name="font">
+               <font>
+                <pointsize>18</pointsize>
+               </font>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QLabel" name="label_perk_1">
@@ -355,7 +361,13 @@ border-image: transparent</string>
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="combo_perk_1"/>
+             <widget class="QComboBox" name="combo_perk_1">
+              <property name="font">
+               <font>
+                <pointsize>18</pointsize>
+               </font>
+              </property>
+             </widget>
             </item>
             <item>
              <widget class="QLabel" name="label_perk_2">
@@ -370,7 +382,13 @@ border-image: transparent</string>
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="combo_perk_2"/>
+             <widget class="QComboBox" name="combo_perk_2">
+              <property name="font">
+               <font>
+                <pointsize>18</pointsize>
+               </font>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>

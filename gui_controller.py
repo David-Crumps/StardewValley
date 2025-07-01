@@ -71,6 +71,9 @@ class MyForm(QtWidgets.QMainWindow):
                 header.setSectionResizeMode(col, QtWidgets.QHeaderView.Interactive)
                 header.resizeSection(col, 250)
 
+        #Initialising Farming Level and Perks
+        self.ui.spinner_farming_level.setRange(0, 14)
+
     #Makes the planner subwindow the main subwindow
     def toPlanner(self):
         self.ui.subwindow_planner.showMaximized()
@@ -96,7 +99,6 @@ class MyForm(QtWidgets.QMainWindow):
         
 
     def addCropToTable(self):
-        
         c = CropController(Seed.getSeedIDFromName(self.ui.combo_seed_name.currentText())) #initalise crop controller from name of seed
         if (self.ui.checkBox_regrow.isChecked()):
             dictHarvests = c.regrowableHarvest(self.ui.combo_season_planted.currentText(), self.ui.spin_day_planted.value(), self.ui.combo_fertilizer.currentText() )    
@@ -113,17 +115,33 @@ class MyForm(QtWidgets.QMainWindow):
             tableInfo.append(self.ui.combo_fertilizer.currentText())
             
             #Determine qualityOfCrops in a singleHarvest
-            qualCrops = c.determineQualityOfHarvest(5, self.ui.combo_fertilizer.currentText(), self.ui.spin_amount_purchased.value()) #5 is temp value until farming level is implemented in the ui\
+            qualCrops = c.determineQualityOfHarvest(self.ui.spinner_farming_level.value(), self.ui.combo_fertilizer.currentText(), self.ui.spin_amount_purchased.value())
             
-            tableInfo.append(c.determineCost(self.ui.spin_amount_purchased.value()))#Cost
-            tableInfo.append(c.determineEstimatedProfit(qualCrops, dictHarvests["Total"])) #Profit 
+            cost = c.determineCost(self.ui.spin_amount_purchased.value())
+            tableInfo.append(cost)
+
+            profit = c.determineEstimatedProfit(qualCrops, dictHarvests["Total"])
+            tableInfo.append(profit) 
             
 
             row_count = self.ui.table_planner.rowCount()
             self.ui.table_planner.insertRow(row_count)
  
             for col, value in enumerate(tableInfo):
-                self.ui.table_planner.setItem(row_count, col, QtWidgets.QTableWidgetItem(str(value)))   
+                self.ui.table_planner.setItem(row_count, col, QtWidgets.QTableWidgetItem(str(value)))
+
+            #Adding total cost
+            totalCost = cost + int(self.ui.label_cost_amount.text())
+            self.ui.label_cost_amount.setText(str(totalCost))
+
+            #Adding gross profit
+            totalGross = profit + int(self.ui.label_gross_amount.text())
+            self.ui.label_gross_amount.setText(str(totalGross))
+
+            #Net Profit
+            self.ui.label_net_amount.setText(str(totalGross-totalCost))
+
+            self.toTable()
         else:
             dialog = MyDialog()
             dialog.exec_()
