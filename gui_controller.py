@@ -117,15 +117,30 @@ class MyForm(QtWidgets.QMainWindow):
             #Determine qualityOfCrops in a singleHarvest
             qualCrops = c.determineQualityOfHarvest(self.ui.spinner_farming_level.value(), self.ui.combo_fertilizer.currentText(), self.ui.spin_amount_purchased.value())
             
-            tableInfo.append(c.determineCost(self.ui.spin_amount_purchased.value()))#Cost
-            tableInfo.append(c.determineEstimatedProfit(qualCrops, dictHarvests["Total"])) #Profit 
+            cost = c.determineCost(self.ui.spin_amount_purchased.value())
+            tableInfo.append(cost)
+
+            profit = c.determineEstimatedProfit(qualCrops, dictHarvests["Total"])
+            tableInfo.append(profit) 
             
 
             row_count = self.ui.table_planner.rowCount()
             self.ui.table_planner.insertRow(row_count)
  
             for col, value in enumerate(tableInfo):
-                self.ui.table_planner.setItem(row_count, col, QtWidgets.QTableWidgetItem(str(value)))   
+                self.ui.table_planner.setItem(row_count, col, QtWidgets.QTableWidgetItem(str(value)))
+
+            #Adding total cost
+            totalCost = cost + int(self.ui.label_cost_amount.text())
+            self.ui.label_cost_amount.setText(str(totalCost))
+
+            #Adding gross profit
+            totalGross = profit + int(self.ui.label_gross_amount.text())
+            self.ui.label_gross_amount.setText(str(totalGross))
+
+            #Net Profit
+            self.ui.label_net_amount.setText(str(totalGross-totalCost))
+
             self.toTable()
         else:
             dialog = MyDialog()
