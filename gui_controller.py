@@ -115,7 +115,7 @@ class MyForm(QtWidgets.QMainWindow):
             tableInfo.append(self.ui.combo_fertilizer.currentText())
             
             #Determine qualityOfCrops in a singleHarvest
-            qualCrops = c.determineQualityOfHarvest(self.ui.spinner_farming_level.value(), self.ui.combo_fertilizer.currentText(), self.ui.spin_amount_purchased.value()) #5 is temp value until farming level is implemented in the ui\
+            qualCrops = c.determineQualityOfHarvest(self.ui.spinner_farming_level.value(), self.ui.combo_fertilizer.currentText(), self.ui.spin_amount_purchased.value())
             
             tableInfo.append(c.determineCost(self.ui.spin_amount_purchased.value()))#Cost
             tableInfo.append(c.determineEstimatedProfit(qualCrops, dictHarvests["Total"])) #Profit 
