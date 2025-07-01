@@ -99,7 +99,6 @@ class MyForm(QtWidgets.QMainWindow):
         
 
     def addCropToTable(self):
-        
         c = CropController(Seed.getSeedIDFromName(self.ui.combo_seed_name.currentText())) #initalise crop controller from name of seed
         if (self.ui.checkBox_regrow.isChecked()):
             dictHarvests = c.regrowableHarvest(self.ui.combo_season_planted.currentText(), self.ui.spin_day_planted.value(), self.ui.combo_fertilizer.currentText() )    
@@ -127,6 +126,7 @@ class MyForm(QtWidgets.QMainWindow):
  
             for col, value in enumerate(tableInfo):
                 self.ui.table_planner.setItem(row_count, col, QtWidgets.QTableWidgetItem(str(value)))   
+            self.toTable()
         else:
             dialog = MyDialog()
             dialog.exec_()
