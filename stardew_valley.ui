@@ -340,7 +340,7 @@ border-image: transparent</string>
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="combo_farming_level"/>
+             <widget class="QSpinBox" name="spinner_farming_level"/>
             </item>
             <item>
              <widget class="QLabel" name="label_perk_1">
