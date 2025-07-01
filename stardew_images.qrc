@@ -1,0 +1,24 @@
+<RCC>
+  <qresource prefix="Menu">
+    <file>images/Main_Logo.png</file>
+    <file>images/stardewbackground.png</file>
+    <file>images/Poppy.png</file>
+    <file>images/Melon.png</file>
+    <file>images/Rhubarb.png</file>
+    <file>images/Pineapple_Seeds.png</file>
+    <file>images/Red_Cabbage.png</file>
+    <file>images/Fairy_Rose.png</file>
+    <file>images/starfruitseed.png</file>
+    <file>images/pumpkin.png</file>
+  </qresource>
+  <qresource prefix="Planner">
+    <file>images/1730866778_stardew_valley.jpg</file>
+    <file>images/Scythe.png</file>
+    <file>images/Scarecrow.png</file>
+    <file>images/Sprinkler.png</file>
+    <file>images/Basic_Fertilizer.png</file>
+    <file>images/Watering_Can.png</file>
+    <file>images/Hoe.png</file>
+    <file>images/StardewValley-bdf9bce-e1702989182611.jpg</file>
+  </qresource>
+</RCC>
