@@ -71,6 +71,9 @@ class MyForm(QtWidgets.QMainWindow):
                 header.setSectionResizeMode(col, QtWidgets.QHeaderView.Interactive)
                 header.resizeSection(col, 250)
 
+        #Initialising Farming Level and Perks
+        self.ui.spinner_farming_level.setRange(0, 14)
+
     #Makes the planner subwindow the main subwindow
     def toPlanner(self):
         self.ui.subwindow_planner.showMaximized()
@@ -113,7 +116,7 @@ class MyForm(QtWidgets.QMainWindow):
             tableInfo.append(self.ui.combo_fertilizer.currentText())
             
             #Determine qualityOfCrops in a singleHarvest
-            qualCrops = c.determineQualityOfHarvest(5, self.ui.combo_fertilizer.currentText(), self.ui.spin_amount_purchased.value()) #5 is temp value until farming level is implemented in the ui\
+            qualCrops = c.determineQualityOfHarvest(self.ui.spinner_farming_level.value(), self.ui.combo_fertilizer.currentText(), self.ui.spin_amount_purchased.value()) #5 is temp value until farming level is implemented in the ui\
             
             tableInfo.append(c.determineCost(self.ui.spin_amount_purchased.value()))#Cost
             tableInfo.append(c.determineEstimatedProfit(qualCrops, dictHarvests["Total"])) #Profit 
