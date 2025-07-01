@@ -1,4 +1,6 @@
 import sqlite3
+import sys
+import os
 
 class DatabaseManager:
     #Constructor
@@ -10,7 +12,8 @@ class DatabaseManager:
     #Open a connection only if one is NOT already open
     def open_connection(self):
         if not self.conn:
-            self.conn = sqlite3.connect(self.db_name)
+            db_path = self.get_db_path(self.db_name)
+            self.conn = sqlite3.connect(db_path)
             self.cursor = self.conn.cursor()         
     #Closes a connection, only if one is ALREADY open
     def close_connection(self):
@@ -40,6 +43,13 @@ class DatabaseManager:
         self.cursor.execute(query, params)
         self.conn.commit()
         self.close_connection()
+
+    def get_db_path(self, filename):
+        if getattr(sys, 'frozen', False):
+            base_path = sys._MEIPASS
+        else:
+            base_path = os.path.dirname(os.path.abspath(__file__))
+        return os.path.join(base_path, filename)
         
         
         
